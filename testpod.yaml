@@ -1,0 +1,12 @@
+#sample pod code
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-sample
+  labels:
+    app: nginx
+    tier: test
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx    

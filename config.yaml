@@ -1,0 +1,26 @@
+apiVersion:v1
+kind:Pod
+metadata:
+  name: nginx-pod-config
+  labels:
+    name:nginx-pod-config
+    tier:dev
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      volumeMounts:
+        - name: test-vol
+          mountPath: "/etc/non-sensitive-data"
+          readonly: true
+  volumes:
+    - name: test-vol
+      configMap:
+        name: nginx-config-vol
+        items:
+          - key: config1.txt
+            path: /ec2-user/config1.txt
+          - key: config2.txt
+            path: /ec2-user/config2.txt
+
+      
