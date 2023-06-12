@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+spec:
+  replicas: 3
+  selector: 
+    app : nginx-rc
+  template:
+    metadata:
+      name: nginx-rc
+      label:
+        app: nginx-rc
+        env: dev
+    spec:
+      containers:
+        - name: nginx-app
+          image: nginx
+          ports: 
+          - containerPort: 80
+          resources:
+            requests:
+              memory: "64mi"
+              cpu: "250m"
+            limits:
+              memory: "128mi"
+              cpu: "500m"
